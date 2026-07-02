@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khởi Nguyên Vòng 2 — Tổng hợp Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17;
+    --paper:#fdfaf4;
+    --paper-2:#f5efe2;
+    --rule:#e4dbc7;
+    --brand:#c8342a;
+    --brand-2:#e0632a;
+    --brand-soft:#fbe9e2;
+    --gold:#b98a2e;
+    --sub:#6f6a5e;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4','Georgia',serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--brand);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:5.5rem 1.5rem 4rem;
+    background:
+      radial-gradient(1200px 500px at 15% -10%, #f9e2d8 0%, transparent 60%),
+      linear-gradient(180deg, var(--paper) 0%, var(--paper) 100%);
+    border-bottom:1px solid var(--rule);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px);
+    background-size: 100% 2.6rem;
+    opacity:.35;
+    pointer-events:none;
+  }
+  .hero-inner{max-width:760px; margin:0 auto; position:relative;}
+  .eyebrow{
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--brand);
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.35rem .8rem;
+    border:1px solid #ecb9ab;
+    border-radius:999px;
+    background:var(--brand-soft);
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.2rem);
+    line-height:1.08;
+    margin:1.1rem 0 .6rem;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--brand);
+  }
+  .hero p.lede{
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:1.05rem;
+    color:var(--sub);
+    max-width:52ch;
+    margin:0 0 1.8rem;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:1.5rem;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.82rem;
+    color:var(--sub);
+    border-top:1px dashed var(--rule);
+    padding-top:1.2rem;
+  }
+  .hero-meta strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- LAYOUT ---------- */
+  .layout{
+    max-width:1040px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 210px minmax(0,1fr);
+    gap:3rem;
+    padding:3rem 1.5rem 6rem;
+  }
+  nav.toc{
+    position:sticky; top:2rem; align-self:start;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.82rem;
+  }
+  nav.toc .toc-label{
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.68rem;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:.9rem;
+    display:block;
+  }
+  nav.toc ul{list-style:none; margin:0; padding:0; border-left:1px solid var(--rule);}
+  nav.toc li{margin:0;}
+  nav.toc a{
+    display:block;
+    padding:.4rem 0 .4rem .9rem;
+    color:var(--sub);
+    text-decoration:none;
+    border-left:2px solid transparent;
+    margin-left:-1px;
+    transition:.15s;
+  }
+  nav.toc a:hover{color:var(--brand); border-left-color:var(--brand-2);}
+  nav.toc a.sub{padding-left:1.7rem; font-size:.78rem;}
+
+  main.article{min-width:0;}
+
+  main.article h2{
+    font-size:1.55rem;
+    margin:3.2rem 0 1.1rem;
+    padding-bottom:.6rem;
+    border-bottom:2px solid var(--ink);
+    letter-spacing:-0.01em;
+  }
+  main.article > h2:first-child{margin-top:0;}
+  main.article h3{
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.95rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--brand);
+    font-weight:700;
+    margin:2.2rem 0 .8rem;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  main.article h3::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--brand-2);
+    display:inline-block;
+  }
+  main.article p{margin:.7rem 0; font-size:1.02rem;}
+  main.article ul, main.article ol{
+    margin:.8rem 0 1.2rem;
+    padding-left:1.3rem;
+  }
+  main.article li{margin:.42rem 0;}
+  main.article strong{color:var(--ink); font-weight:700;}
+  main.article code{
+    font-family:var(--mono);
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    padding:.1rem .4rem;
+    border-radius:4px;
+    font-size:.86em;
+  }
+  main.article hr{
+    border:none;
+    border-top:1px dashed var(--rule);
+    margin:2.6rem 0;
+  }
+  main.article em{color:var(--sub); font-style:italic;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:1.2rem 0 1.6rem;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.88rem;
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+  }
+  thead th{
+    text-align:left;
+    background:var(--ink);
+    color:var(--paper);
+    padding:.7rem .9rem;
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  tbody td{
+    padding:.75rem .9rem;
+    border-top:1px solid var(--rule);
+    vertical-align:top;
+  }
+  tbody tr:nth-child(odd){background:#faf5e9;}
+
+  .callout{
+    background:var(--brand-soft);
+    border-left:3px solid var(--brand);
+    padding:1rem 1.2rem;
+    border-radius:0 6px 6px 0;
+    margin:1.4rem 0;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.92rem;
+  }
+
+  footer{
+    max-width:1040px;
+    margin:0 auto;
+    padding:2rem 1.5rem 4rem;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:.8rem;
+    color:var(--sub);
+    border-top:1px solid var(--rule);
+  }
+
+  @media (max-width: 820px){
+    .layout{grid-template-columns:1fr; gap:1.5rem;}
+    nav.toc{position:static; border-bottom:1px solid var(--rule); padding-bottom:1.2rem;}
+    nav.toc ul{columns:2;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Ghi chép training · Khởi Nguyên</span>
+    <h1>Tổng hợp kiến thức<br><em>Nghiên cứu thị trường</em> &amp; Mô hình kinh doanh</h1>
+    <p class="lede">Tài liệu tham khảo tổng hợp từ buổi training thực tế, phục vụ xây dựng Đề án Sản phẩm Vòng 2 — Cuộc thi Ý tưởng Đổi mới Sáng tạo "Khởi Nguyên".</p>
+    <div class="hero-meta">
+      <div><strong>Đề tài ưu tiên</strong><br>Giáo dục — EdTech</div>
+      <div><strong>Hạn nộp bài</strong><br>12h00, 08/07/2026</div>
+      <div><strong>Cấu trúc</strong><br>2 phần · 5 bước · 9 khối BMC</div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc">
+    <span class="toc-label">Mục lục</span>
+    <ul>
+      <li><a href="#boi-canh">0. Bối cảnh đề bài</a></li>
+      <li><a href="#phan-1">Phần I — 5 bước NCTT</a></li>
+      <li><a href="#phan-1" class="sub">Bước 1 — Giả thuyết KH</a></li>
+      <li><a href="#phan-1" class="sub">Bước 2 — Pain point</a></li>
+      <li><a href="#phan-1" class="sub">Bước 3 — Cung Cầu</a></li>
+      <li><a href="#phan-1" class="sub">Bước 4 — TAM SAM SOM</a></li>
+      <li><a href="#phan-2">Phần II — BMC</a></li>
+    </ul>
+  </nav>
+
+  <main class="article" id="content">
+    <h1>Tổng hợp Training — Cuộc thi "Khởi Nguyên" Vòng 2</h1>
+<p><em>Nghiên cứu thị trường &amp; Xây dựng Mô hình kinh doanh cho đề án EdTech</em></p>
+<hr />
+<h2 id="boi-canh">0. Bối cảnh đề bài Vòng 2</h2>
+<p><strong>Mục tiêu:</strong> Tạo ra một sản phẩm công nghệ để giải quyết một bài toán/nỗi đau trong thực tế (ưu tiên lĩnh vực Giáo dục - EdTech). Mỗi đội thi gồm SV Quản trị Kinh doanh (Project Manager, Business Analyst) và SV CNTT (Product Developer, Software Engineer).</p>
+<p><strong>Đề án phải giải quyết trọn vẹn 4 phần:</strong></p>
+<ol>
+<li>Xác định vấn đề — "nỗi đau" cụ thể của khách hàng/thị trường</li>
+<li>Phân tích thị trường — chứng minh nỗi đau đủ lớn (cung-cầu, khách hàng mục tiêu, đối thủ)</li>
+<li>Giải pháp công nghệ — tính năng cốt lõi, tính khả thi kỹ thuật</li>
+<li>Bản Demo UX/UI — mockup/prototype trực quan hóa luồng trải nghiệm</li>
+</ol>
+<p><strong>Tiêu chí chấm điểm:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Hạng mục</th>
+<th>Tỷ trọng</th>
+<th>Chi tiết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hình thức</td>
+<td>10%</td>
+<td>Bố cục rõ ràng, không lỗi chính tả/ngữ pháp, đúng quy định BTC</td>
+</tr>
+<tr>
+<td>Kinh doanh &amp; Thị trường (QTKD)</td>
+<td>60%</td>
+<td>Định vị vấn đề (20đ), Nghiên cứu thị trường (25đ), Tính khả thi (15đ)</td>
+</tr>
+<tr>
+<td>Công nghệ &amp; Sản phẩm (CNTT)</td>
+<td>30%</td>
+<td>Giải pháp công nghệ (20đ), UI (10đ)</td>
+</tr>
+<tr>
+<td>Điểm cộng</td>
+<td>+5đ</td>
+<td>Dự án thuộc mảng Giáo dục/EdTech</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quy chế nộp bài:</strong></p>
+<ul>
+<li>File PDF ≤15MB, tối đa 20 slides, kèm link demo UX/UI (Figma/Adobe XD, public)</li>
+<li>Tên file/tiêu đề email: <code>[KHOINGUYEN - Vong 2] - Tên đội thi</code></li>
+<li>Hạn nộp: <strong>12h00, ngày 08/07/2026</strong></li>
+<li>Trễ mỗi 30 phút: trừ 10% tổng điểm. Trễ quá 2 tiếng: hủy kết quả</li>
+</ul>
+<hr />
+<h2 id="phan-1">Phần I — Quy trình 5 bước Nghiên cứu Thị trường</h2>
+<h3>Bước 1: Giả thuyết về khách hàng</h3>
+<ul>
+<li>Định hình chân dung khách hàng mục tiêu <strong>trước khi</strong> thu thập dữ liệu (tránh khảo sát đại trà làm loãng số liệu, lãng phí ngân sách)</li>
+<li>Khoanh vùng theo <strong>nhân khẩu học</strong> (demographics: tuổi, giới tính, nghề nghiệp, thu nhập...) &amp; <strong>hành vi</strong> (behavior: thói quen sử dụng, kênh tiếp cận, mức sẵn sàng chi trả...)</li>
+<li>Đặt giả thuyết về vấn đề lớn nhất của khách hàng</li>
+<li><em>Nền tảng lý thuyết:</em> áp dụng tư duy Lean Startup (Eric Ries) — đặt giả thuyết có căn cứ trước, xác minh (validate) sau, thay vì khảo sát đại trà ngay từ đầu</li>
+<li><em>Lưu ý cho EdTech:</em> thường có 2 lớp khách hàng — <strong>end-user</strong> (học sinh/sinh viên dùng sản phẩm) và <strong>buyer</strong> (phụ huynh/nhà trường trả tiền). Cần tách rõ 2 nhóm này khi đặt giả thuyết.</li>
+</ul>
+<h3>Bước 2: Xác định "nỗi đau" (Pain point)</h3>
+<ul>
+<li>Đi sâu thế giới quan khách hàng qua <strong>phỏng vấn sâu (IDI - In-Depth Interview)</strong> hoặc <strong>thảo luận nhóm nhỏ 3-4 người (FGD - Focus Group Discussion)</strong></li>
+<li>4 nhóm nỗi đau cần khai thác (mô hình "4 loại Buyer's Pain Points"):</li>
+<li><strong>Tài chính:</strong> chi quá nhiều cho giải pháp hiện tại</li>
+<li><strong>Năng suất:</strong> tốn quá nhiều thời gian, công sức</li>
+<li><strong>Quy trình:</strong> cách mua hàng/tiếp cận quá rắc rối</li>
+<li><strong>Hỗ trợ:</strong> không được tư vấn chu đáo</li>
+<li>Gợi ý ví dụ EdTech: tài chính (phụ huynh chi nhiều học thêm không hiệu quả), năng suất (SV mất thời gian tìm tài liệu ôn tập phù hợp), quy trình (đăng ký môn học rắc rối), hỗ trợ (giảng viên không theo sát từng SV)</li>
+</ul>
+<h3>Bước 3: Đánh giá Cung - Cầu</h3>
+<p><strong>Phân tích CUNG (Supply side analysis):</strong></p>
+<ul>
+<li>Lập danh sách đối thủ <strong>trực tiếp</strong> (cùng bài toán, cùng cách giải quyết) &amp; <strong>gián tiếp</strong> (cùng nhu cầu, khác cách giải quyết — VD: gia sư truyền thống, nhóm học Facebook)</li>
+<li>Mua thử sản phẩm để phân tích: chiến lược giá, điểm mạnh/yếu, lỗi vận hành</li>
+<li>Quy trình: direct/indirect competitors → competitor product experience → pricing strategy comparison</li>
+</ul>
+<p><strong>Phân tích CẦU (Demand side analysis):</strong></p>
+<ul>
+<li><strong>Google Trends</strong> (free): đánh giá xu hướng tìm kiếm từ khóa theo thời gian/khu vực</li>
+<li><strong>SimilarWeb</strong> (có bản free giới hạn): kiểm tra lưu lượng truy cập &amp; nguồn traffic của đối thủ</li>
+<li><strong>Social Listening</strong>: đo lường mức độ quan tâm thực tế qua MXH/forum (group Facebook, TikTok...)</li>
+</ul>
+<h3>Bước 4: Tính toán Dung lượng Thị trường — TAM - SAM - SOM</h3>
+<p>Mô hình phễu thu hẹp dần: <strong>TAM &gt; SAM &gt; SOM</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tầng</th>
+<th>Ý nghĩa</th>
+<th>Cách tính gợi ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TAM</strong> (Total Addressable Market)</td>
+<td>Tổng thị trường khả dụng — toàn bộ cơ hội doanh thu tối đa nếu chiếm 100% thị trường, không đối thủ. Xác định tiềm năng dài hạn</td>
+<td>Tổng số người có nhu cầu × giá trị trung bình họ có thể chi</td>
+</tr>
+<tr>
+<td><strong>SAM</strong> (Serviceable Available Market)</td>
+<td>Thị trường có thể phục vụ — thu hẹp theo mô hình kinh doanh, phân khúc giá, khu vực địa lý</td>
+<td>TAM thu hẹp theo phân khúc mục tiêu cụ thể (VD: SV các trường CNTT/QTKD tại HCMC)</td>
+</tr>
+<tr>
+<td><strong>SOM</strong> (Serviceable Obtainable Market)</td>
+<td>Thị trường thực tế chiếm lĩnh — mục tiêu doanh thu 1-3 năm đầu, dựa trên năng lực vận hành &amp; ngân sách tiếp thị</td>
+<td>Phần SAM nhóm thực sự có thể tiếp cận với nguồn lực hiện có</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Lưu ý: số liệu không cần chính xác tuyệt đối nhưng phải có <strong>nguồn tham chiếu hợp lý</strong> (Bộ GD&amp;ĐT, GSO, báo cáo ngành EdTech...), tránh số liệu bịa đặt.</li>
+<li>Đây là phần cốt lõi để đáp ứng tiêu chí "Nghiên cứu thị trường (25 điểm)".</li>
+</ul>
+<h3>Bước 5</h3>
+<p><em>(Chưa có nội dung — buổi training kết thúc ở Bước 4, chuyển sang Phần II)</em></p>
+<hr />
+<h2 id="phan-2">Phần II — Mô hình kinh doanh: Business Model Canvas (BMC)</h2>
+<p><strong>Định nghĩa:</strong> Công cụ quản trị chiến lược do Alexander Osterwalder và Yves Pigneur phát triển (2010), trực quan hóa toàn bộ mô hình kinh doanh trên <strong>một trang giấy</strong>. Với startup, BMC là "kim chỉ nam" giúp đơn giản hóa lập kế hoạch, tập trung vào tính linh hoạt và kiểm chứng nhanh các giả thuyết thực tế.</p>
+<h3>Cấu trúc 9 khối, chia theo 4 cụm</h3>
+<p><strong>(I) Khách hàng</strong> <em>(mặt hướng ra thị trường)</em></p>
+<ul>
+<li><strong>Phân khúc khách hàng</strong> (Customer Segments): Chúng ta đang tạo giá trị cho ai? Ai là khách hàng quan trọng nhất?</li>
+<li><strong>Quan hệ khách hàng</strong> (Customer Relationships): Thiết lập &amp; duy trì quan hệ với từng nhóm khách hàng (VD: trợ giúp cá nhân, dịch vụ tự động, cộng đồng)</li>
+<li><strong>Các kênh</strong> (Channels): Giải pháp giá trị được đưa đến khách hàng bằng cách nào? (truyền thông và phân phối)</li>
+</ul>
+<p><strong>(II) Sản phẩm dịch vụ</strong></p>
+<ul>
+<li><strong>Giá trị/Chất lượng</strong> (Value Proposition): Giải pháp (tuyên bố - cam kết) giá trị dành cho khách hàng. Với mỗi phân khúc, ta đưa tới sản phẩm/dịch vụ nào? Thỏa mãn nhu cầu nào?</li>
+</ul>
+<p><strong>(III) Hạ tầng kinh doanh</strong> <em>(mặt vận hành nội bộ)</em></p>
+<ul>
+<li><strong>Đối tác chính</strong> (Key Partnerships): Quan hệ đối tác (thuê ngoài, tổ chức, cá nhân, nhà cung cấp...) ngoài phạm vi công ty</li>
+<li><strong>Các hành động</strong> (Key Activities): Hành động trọng yếu cần thực hiện</li>
+<li><strong>Nguồn lực chủ chốt</strong> (Key Resources): Vật chất, trí tuệ (bản quyền, dữ liệu), nhân lực, tài chính</li>
+</ul>
+<p><strong>(IV) Tài chính</strong></p>
+<ul>
+<li><strong>Cơ cấu chi phí</strong> (Cost Structure): Chi phí trong toàn bộ mô hình, xác định hoạt động nào có chi phí chính, phương thức định giá</li>
+<li><strong>Dòng doanh thu</strong> (Revenue Stream): Các dòng doanh thu có được từ việc mang giá trị sản phẩm/dịch vụ đến khách hàng</li>
+</ul>
+<h3>Ghi chú vận dụng</h3>
+<ul>
+<li><strong>Mạch tư duy khi thuyết trình:</strong> Khách hàng là ai → Ta mang lại giá trị gì cho họ → Ta cần gì để làm điều đó → Ta kiếm tiền và tốn tiền ra sao</li>
+<li><strong>Thứ tự điền canvas gợi ý:</strong></li>
+<li>Customer Segments (dựa vào chân dung khách hàng — Bước 1)</li>
+<li>Value Propositions (dựa vào pain point — Bước 2, mỗi pain point nên có 1 value proposition tương ứng)</li>
+<li>Channels &amp; Customer Relationship</li>
+<li>Revenue Streams (mô hình thu tiền: subscription, freemium, one-time, hoa hồng...)</li>
+<li>Key Activities / Resources / Partners</li>
+<li>Cost Structure (tổng hợp từ các khối trên)</li>
+<li><strong>Liên kết dữ liệu Phần I → Phần II:</strong> Pain Point (Bước 2) → đổ vào ô <em>Value Propositions</em>; Customer Persona (Bước 1) → đổ vào ô <em>Customer Segments</em></li>
+<li><strong>Lưu ý riêng cho EdTech:</strong> phần <strong>Revenue Streams</strong> hay bị làm sơ sài nhất — vì "người dùng" và "người trả tiền" thường không phải cùng một đối tượng (end-user là học sinh/SV, buyer là phụ huynh/nhà trường). Cần làm rõ dòng tiền đến từ ai.</li>
+<li>BMC là công cụ trực tiếp trả lời tiêu chí <strong>"Tính khả thi (15 điểm)"</strong> trong đề bài — đặc biệt qua 2 ô Cost Structure và Revenue Stream, chứng minh mô hình có thể sống được về tài chính.</li>
+</ul>
+<hr />
+<p><em>File tổng hợp từ buổi training thực tế, dùng làm tài liệu tham khảo khi xây dựng Đề án Sản phẩm Vòng 2.</em></p>
+  </main>
+</div>
+
+<footer>
+  File tổng hợp từ buổi training thực tế · Dùng làm tài liệu tham khảo khi xây dựng Đề án Sản phẩm Vòng 2, cuộc thi "Khởi Nguyên".
+</footer>
+
+</body>
+</html>
